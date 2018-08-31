@@ -21,7 +21,7 @@ const event = {
       return lastFetchTask;
     }
 
-    if (new Date() - lastFetchTime > 1000 * 60 * 10 /* 10 mins */) {
+    if (new Date() - lastFetchTime > 1000 * 30 /* 30 sec */) {
       lastFetchTime = new Date();
 
       // Get Oauth token and fetch data

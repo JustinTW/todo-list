@@ -12,6 +12,7 @@ class Header extends React.Component {
             <div>
               All data backed by this&nbsp;
               <a
+                className={s.link}
                 href="https://calendar.google.com/calendar/embed?src=on5u94ds1i0opo6ikcud037kig%40group.calendar.google.com&ctz=Asia%2FTaipei"
                 target="_blank"
                 rel="noopener noreferrer"
