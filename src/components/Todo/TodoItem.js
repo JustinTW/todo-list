@@ -38,9 +38,7 @@ class TodoItem extends React.Component {
               <div className="row">
                 <div className="col">
                   <Icon icon={clock} />
-                  <span className="badge badge-light">
-                    {this.props.start}
-                  </span>{' '}
+                  <span className="badge badge-light">{this.props.start}</span>
                   ~ &nbsp;
                   <Icon icon={clock} />
                   <span className="badge badge-light">{this.props.end}</span>
@@ -54,7 +52,7 @@ class TodoItem extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col col-md-1">
+            <div className="col col-sm-1">
               <button
                 type="button"
                 className="btn btn-xs btn-danger img-circle float-right"

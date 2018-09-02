@@ -58,14 +58,14 @@ exports[`Layout renders children correctly 1`] = `
           To Do Events
         </h1>
         <div>
-          All data backed by this 
+          All data backed by  
           <a
             className="link"
             href="https://calendar.google.com/calendar/embed?src=on5u94ds1i0opo6ikcud037kig%40group.calendar.google.com&ctz=Asia%2FTaipei"
             rel="noopener noreferrer"
             target="_blank"
           >
-            Public Google Calendar
+            this public google calendar
           </a>
         </div>
       </div>
