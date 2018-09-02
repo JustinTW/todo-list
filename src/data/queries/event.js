@@ -1,11 +1,11 @@
-import { GraphQLList as List } from 'graphql';
+import { GraphQLList as ListType } from 'graphql';
 import fetch from 'node-fetch';
 import EventItemType from '../types/EventItemType';
 import { googleApis } from '../../config';
 
 const { GoogleToken } = require('gtoken');
 
-// Google Claendars API
+// Google calendar api
 const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(
   googleApis.calendarId,
 )}/events`;
@@ -15,7 +15,7 @@ let lastFetchTask;
 let lastFetchTime = new Date(1970, 0, 1);
 
 const event = {
-  type: new List(EventItemType),
+  type: new ListType(EventItemType),
   resolve() {
     if (lastFetchTask) {
       return lastFetchTask;
@@ -24,7 +24,7 @@ const event = {
     if (new Date() - lastFetchTime > 1000 * 30 /* 30 sec */) {
       lastFetchTime = new Date();
 
-      // Get Oauth token and fetch data
+      // Get OAuth token and fetch data
       const gtoken = new GoogleToken({
         email: googleApis.credential.client_email,
         scope: ['https://www.googleapis.com/auth/calendar'], // or space-delimited string of scopes

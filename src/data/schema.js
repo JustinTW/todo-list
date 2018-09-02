@@ -4,6 +4,8 @@ import {
 } from 'graphql';
 
 import event from './queries/event';
+import createTodo from './mutation/createTodo';
+import deleteTodo from './mutation/deleteTodo';
 
 const schema = new Schema({
   query: new ObjectType({
@@ -12,6 +14,15 @@ const schema = new Schema({
       event,
     },
   }),
+  mutation: new ObjectType({
+    name: 'Mutation',
+    fields: {
+      createTodo,
+      deleteTodo,
+    },
+  }),
 });
+
+console.info(schema);
 
 export default schema;

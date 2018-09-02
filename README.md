@@ -17,5 +17,6 @@ yarn start
 ## Reference
 
 - react start kit: https://github.com/kriasoft/react-starter-kit
-- react todo ui: https://ionicabizau.github.io/react-todo-app/
+- graphql-express: https://medium.com/netscape/graphql-express-js-part-1-49a5071636d2
+- Simple to do list with React js and Bootstrap: https://codepen.io/philmayfield/pen/MwRgyN
 - server side rendering: https://developers.front-commerce.com/docs/assets/architecture-internals.svg
