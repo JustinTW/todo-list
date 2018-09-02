@@ -26,27 +26,55 @@ class TodoForm extends React.Component {
     return (
       <div className="commentForm vert-offset-top-2">
         <div className="clearfix">
-          <form className="todoForm form-horizontal" onSubmit={this.doSubmit}>
-            <div className="form-group">
-              <label htmlFor="summary" className="col-md-2 control-label">
-                summary
-                <div className="col-md-10">
-                  <input
-                    type="text"
-                    id="summary"
-                    ref={this.summaryRef}
-                    className="form-control"
-                    placeholder="What do you need to do?"
-                  />
-                </div>
-              </label>
-            </div>
-            <div className="row">
-              <div className="col-md-10 col-md-offset-2 text-right">
+          <form onSubmit={this.doSubmit}>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                {/* eslint-disable-next-line jsx-a11y/label-has-for */}
+                <label htmlFor="summary">Event</label>
+                <input
+                  type="text"
+                  id="summary"
+                  ref={this.summaryRef}
+                  className="form-control"
+                  placeholder="What do you need to do?"
+                  maxLength="95"
+                  autoComplete="off"
+                  required
+                />
+              </div>
+              <div className="form-group col-md-2">
+                {/* eslint-disable-next-line jsx-a11y/label-has-for */}
+                <label htmlFor="start">Start</label>
+                <input
+                  type="text"
+                  id="start"
+                  ref={this.startRef}
+                  className="form-control"
+                  placeholder="start"
+                  autoComplete="off"
+                  required
+                />
+              </div>
+              <div className="form-group col-md-2">
+                {/* eslint-disable-next-line jsx-a11y/label-has-for */}
+                <label htmlFor="end">End</label>
+                <input
+                  type="text"
+                  id="end"
+                  ref={this.endRef}
+                  className="form-control"
+                  placeholder="end"
+                  autoComplete="off"
+                  required
+                />
+              </div>
+              <div className="form-group col-md-2">
+                {/* eslint-disable-next-line jsx-a11y/label-has-for */}
+                <label htmlFor="">Operation</label>
                 <input
                   type="submit"
-                  value="Save Item"
-                  className="btn btn-primary"
+                  value="Add Event"
+                  className="btn btn-primary float-right"
                 />
               </div>
             </div>

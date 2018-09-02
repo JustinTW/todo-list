@@ -4,15 +4,24 @@
 
 ## Requirement
 
-- NodeJS > 8
-- Yarn > 1.6
+- NodeJS >= 8.11.2
+- Yarn >= 1.6.0
 
-## Usage
+## Test
+
+```
+yarn
+yarn test
+```
+
+## Run Apps
 
 ```
 yarn
 yarn start
 ```
+
+Now you can open your web app in a browser via: http://localhost:3000
 
 ## Reference
 

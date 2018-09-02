@@ -23,6 +23,4 @@ const schema = new Schema({
   }),
 });
 
-console.info(schema);
-
 export default schema;

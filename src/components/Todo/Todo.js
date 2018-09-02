@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Todo.css';
+
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 
@@ -69,7 +71,7 @@ class Todo extends React.Component {
     // console.info(this.state);
     return (
       <section className={s.offset}>
-        <div className="well">
+        <div className="jumbotron">
           <TodoForm onSummarySubmit={this.handleSubmit} />
           <TodoList
             data={this.state.data}

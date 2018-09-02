@@ -39,8 +39,7 @@ const deleteTodo = {
         'Content-Type': 'application/json',
       };
 
-      fetch(`${url}/${id}`, { headers })
-        .then(response => response.json())
+      fetch(`${url}/${id}`, { headers, method: 'DELETE' })
         .then(response => {
           items = response;
           return items;

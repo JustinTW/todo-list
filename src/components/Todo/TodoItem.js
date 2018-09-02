@@ -20,19 +20,31 @@ class TodoItem extends React.Component {
   updateClass = () => {};
 
   render() {
-    const classes = 'list-group-item clearfix';
+    const classes =
+      'list-group-item justify-content-between align-items-center';
     return (
       <li className={classes}>
         {this.props.summary}
-        <div className="pull-right" role="group">
-          <button
-            type="button"
-            className="btn btn-xs btn-danger img-circle"
-            onClick={this.removeNode}
-          >
-            &#xff38;
-          </button>
-        </div>
+        <button
+          type="button"
+          className="btn btn-xs btn-danger img-circle float-right"
+          onClick={this.removeNode}
+        >
+          &#xff38;
+        </button>
+        {/* <div className="container">
+          <div className="row">
+            <div className="col overflow-hidden">
+
+
+
+            </div>
+          </div>
+        </div> */}
+        {/* <div className="overflow-hidden" />
+        <div className="float-right">
+
+        </div> */}
       </li>
     );
   }

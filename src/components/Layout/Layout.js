@@ -5,6 +5,7 @@ import GithubCorner from 'react-github-corner';
 
 // external-global styles must be imported in your JS.
 import normalizeCss from 'normalize.css';
+import bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import s from './Layout.css';
 import Header from '../Header';
 
@@ -31,4 +32,4 @@ class Layout extends React.Component {
   }
 }
 
-export default withStyles(normalizeCss, s)(Layout);
+export default withStyles(normalizeCss, bootstrap, s)(Layout);
