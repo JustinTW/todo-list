@@ -1,30 +1,23 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
 import React from 'react';
 import Home from './Home';
 import Layout from '../../components/Layout';
 
 async function action({ fetch }) {
+  // Load todo events from /graphql
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
-      query: '{news{title,link,content}}',
+      query: '{event {id, summary, htmlLink, start, end}}',
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.news) throw new Error('Failed to load the news feed.');
+  if (!data || !data.event) throw new Error('Failed to load the event feed.');
+
   return {
-    title: 'React Starter Kit',
+    title: 'TODO List Demo',
     chunks: ['home'],
     component: (
       <Layout>
-        <Home news={data.news} />
+        <Home event={data.event} />
       </Layout>
     ),
   };

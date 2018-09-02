@@ -2,177 +2,77 @@
 
 exports[`Layout renders children correctly 1`] = `
 <div>
+  <a
+    aria-label="Open GitHub project"
+    className="github-corner"
+    height={80}
+    href="https://github.com/justintw/todo-list"
+    width={80}
+  >
+    <svg
+      height={80}
+      style={
+        Object {
+          "fill": "#fff",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      viewBox="0 0 250 250"
+      width={80}
+    >
+      <path
+        className="octo-banner"
+        d="M0 0l115 115h15l12 27 108 108V0z"
+        fill="#7253aa"
+      />
+      <path
+        className="octo-arm"
+        d="M128 109c-15-9-9-19-9-19 3-7 2-11 2-11-1-7 3-2 3-2 4 5 2 11 2 11-3 10 5 15 9 16"
+        style={
+          Object {
+            "WebkitTransformOrigin": "130px 106px",
+            "transformOrigin": "130px 106px",
+          }
+        }
+      />
+      <path
+        className="octo-body"
+        d="M115 115s4 2 5 0l14-14c3-2 6-3 8-3-8-11-15-24 2-41 5-5 10-7 16-7 1-2 3-7 12-11 0 0 5 3 7 16 4 2 8 5 12 9s7 8 9 12c14 3 17 7 17 7-4 8-9 11-11 11 0 6-2 11-7 16-16 16-30 10-41 2 0 3-1 7-5 11l-12 11c-1 1 1 5 1 5z"
+      />
+    </svg>
+  </a>
   <div
     className="root"
   >
     <div
       className="container"
     >
-      <div
-        className="root"
-        role="navigation"
-      >
-        <a
-          className="link"
-          href="/about"
-          onClick={[Function]}
-        >
-          About
-        </a>
-        <a
-          className="link"
-          href="/contact"
-          onClick={[Function]}
-        >
-          Contact
-        </a>
-        <span
-          className="spacer"
-        >
-           | 
-        </span>
-        <a
-          className="link"
-          href="/login"
-          onClick={[Function]}
-        >
-          Log in
-        </a>
-        <span
-          className="spacer"
-        >
-          or
-        </span>
-        <a
-          className="link highlight"
-          href="/register"
-          onClick={[Function]}
-        >
-          Sign up
-        </a>
-      </div>
-      <a
-        className="brand"
-        href="/"
-        onClick={[Function]}
-      >
-        <img
-          alt="React"
-          height="38"
-          src="logo-small.png"
-          srcSet="logo-small@2x.png 2x"
-          width="38"
-        />
-        <span
-          className="brandTxt"
-        >
-          Your Company
-        </span>
-      </a>
       <div
         className="banner"
       >
         <h1
           className="bannerTitle"
         >
-          React
+          To Do Events
         </h1>
-        <p
-          className="bannerDesc"
-        >
-          Complex web apps made easy
-        </p>
+        <div>
+          All data backed by  
+          <a
+            className="link"
+            href="https://calendar.google.com/calendar/embed?src=on5u94ds1i0opo6ikcud037kig%40group.calendar.google.com&ctz=Asia%2FTaipei"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            this public google calendar
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <div
     className="child"
   />
-  <div
-    className="root"
-  >
-    <div
-      className="container"
-    >
-      <a
-        className="link"
-        href="https://gitter.im/kriasoft/react-starter-kit"
-      >
-        Ask a question
-      </a>
-      <span
-        className="spacer"
-      >
-        |
-      </span>
-      <a
-        className="link"
-        href="https://github.com/kriasoft/react-starter-kit/issues/new"
-      >
-        Report an issue
-      </a>
-    </div>
-  </div>
-  <div
-    className="root"
-  >
-    <div
-      className="container"
-    >
-      <span
-        className="text"
-      >
-        © Your Company
-      </span>
-      <span
-        className="spacer"
-      >
-        ·
-      </span>
-      <a
-        className="link"
-        href="/"
-        onClick={[Function]}
-      >
-        Home
-      </a>
-      <span
-        className="spacer"
-      >
-        ·
-      </span>
-      <a
-        className="link"
-        href="/admin"
-        onClick={[Function]}
-      >
-        Admin
-      </a>
-      <span
-        className="spacer"
-      >
-        ·
-      </span>
-      <a
-        className="link"
-        href="/privacy"
-        onClick={[Function]}
-      >
-        Privacy
-      </a>
-      <span
-        className="spacer"
-      >
-        ·
-      </span>
-      <a
-        className="link"
-        href="/not-found"
-        onClick={[Function]}
-      >
-        Not Found
-      </a>
-    </div>
-  </div>
 </div>
 `;
