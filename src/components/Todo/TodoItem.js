@@ -29,7 +29,7 @@ class TodoItem extends React.Component {
 
   render() {
     const classes =
-      'list-group-item justify-content-between align-items-center';
+      'list-group-item list-group-item-action justify-content-between align-items-center';
     return (
       <li className={classes}>
         <div className="container">
