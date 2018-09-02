@@ -5,6 +5,7 @@ import TodoItem from './TodoItem';
 class TodoList extends React.Component {
   static propTypes = {
     removeNode: PropTypes.func.isRequired,
+    fetchDetail: PropTypes.func.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
         summary: PropTypes.string.isRequired,
@@ -17,6 +18,7 @@ class TodoList extends React.Component {
   };
 
   removeNode = nodeId => this.props.removeNode(nodeId);
+  fetchDetail = nodeId => this.props.fetchDetail(nodeId);
 
   render() {
     const listNodes = this.props.data.map(
@@ -28,6 +30,7 @@ class TodoList extends React.Component {
           start={listItem.start}
           end={listItem.end}
           removeNode={this.removeNode}
+          fetchDetail={this.fetchDetail}
         />
       ),
       this,

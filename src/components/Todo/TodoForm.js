@@ -26,12 +26,13 @@ class TodoForm extends React.Component {
 
   doSubmit = e => {
     e.preventDefault();
-    console.info(this.summaryRef.current.value);
     const summary = this.summaryRef.current.value.trim();
-    if (!summary) {
+    const start = this.startRef.current.value.trim();
+    const end = this.endRef.current.value.trim();
+    if (!summary || !start || !end) {
       return;
     }
-    this.props.onSummarySubmit(summary);
+    this.props.onSummarySubmit(summary, start, end);
     this.summaryRef.current.value = '';
   };
 
@@ -50,7 +51,7 @@ class TodoForm extends React.Component {
                   ref={this.summaryRef}
                   className="form-control"
                   placeholder="What do you need to do?"
-                  maxLength="95"
+                  maxLength="42"
                   autoComplete="off"
                   required
                 />
