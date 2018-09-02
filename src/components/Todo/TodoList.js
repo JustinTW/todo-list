@@ -25,6 +25,8 @@ class TodoList extends React.Component {
           key={listItem.id}
           nodeId={listItem.id}
           summary={listItem.summary}
+          start={listItem.start}
+          end={listItem.end}
           removeNode={this.removeNode}
         />
       ),

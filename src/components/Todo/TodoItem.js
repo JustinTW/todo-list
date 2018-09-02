@@ -1,15 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Icon from 'react-icons-kit';
+import { calendar } from 'react-icons-kit/iconic/calendar';
+import { clock } from 'react-icons-kit/iconic/clock';
+import { trash } from 'react-icons-kit/iconic/trash';
 
 class TodoItem extends React.Component {
   static propTypes = {
     removeNode: PropTypes.func.isRequired,
     summary: PropTypes.string.isRequired,
+    start: PropTypes.string,
+    end: PropTypes.string,
     nodeId: PropTypes.string,
   };
 
   static defaultProps = {
     nodeId: '',
+    start: '',
+    end: '',
   };
 
   removeNode = e => {
@@ -24,27 +32,39 @@ class TodoItem extends React.Component {
       'list-group-item justify-content-between align-items-center';
     return (
       <li className={classes}>
-        {this.props.summary}
-        <button
-          type="button"
-          className="btn btn-xs btn-danger img-circle float-right"
-          onClick={this.removeNode}
-        >
-          &#xff38;
-        </button>
-        {/* <div className="container">
+        <div className="container">
           <div className="row">
-            <div className="col overflow-hidden">
-
-
-
+            <div className="col">
+              <div className="row">
+                <div className="col">
+                  <Icon icon={clock} />
+                  <span className="badge badge-light">
+                    {this.props.start}
+                  </span>{' '}
+                  ~ &nbsp;
+                  <Icon icon={clock} />
+                  <span className="badge badge-light">{this.props.end}</span>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <h2>
+                    <Icon icon={calendar} /> {this.props.summary}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div className="col col-md-1">
+              <button
+                type="button"
+                className="btn btn-xs btn-danger img-circle float-right"
+                onClick={this.removeNode}
+              >
+                <Icon icon={trash} />
+              </button>
             </div>
           </div>
-        </div> */}
-        {/* <div className="overflow-hidden" />
-        <div className="float-right">
-
-        </div> */}
+        </div>
       </li>
     );
   }

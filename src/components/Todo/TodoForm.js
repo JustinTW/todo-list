@@ -9,6 +9,19 @@ class TodoForm extends React.Component {
   constructor() {
     super();
     this.summaryRef = React.createRef();
+    this.startRef = React.createRef();
+    this.endRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const start = this.startRef.current.value.trim();
+    if (!start) {
+      this.startRef.current.value = '2018-09-05T16:00:00+08:00';
+    }
+    const end = this.endRef.current.value.trim();
+    if (!end) {
+      this.endRef.current.value = '2018-09-05T16:30:00+08:00';
+    }
   }
 
   doSubmit = e => {
@@ -28,7 +41,7 @@ class TodoForm extends React.Component {
         <div className="clearfix">
           <form onSubmit={this.doSubmit}>
             <div className="form-row">
-              <div className="form-group col-md-6">
+              <div className="form-group col-md-4">
                 {/* eslint-disable-next-line jsx-a11y/label-has-for */}
                 <label htmlFor="summary">Event</label>
                 <input
@@ -42,7 +55,7 @@ class TodoForm extends React.Component {
                   required
                 />
               </div>
-              <div className="form-group col-md-2">
+              <div className="form-group col-md-3">
                 {/* eslint-disable-next-line jsx-a11y/label-has-for */}
                 <label htmlFor="start">Start</label>
                 <input
@@ -55,7 +68,7 @@ class TodoForm extends React.Component {
                   required
                 />
               </div>
-              <div className="form-group col-md-2">
+              <div className="form-group col-md-3">
                 {/* eslint-disable-next-line jsx-a11y/label-has-for */}
                 <label htmlFor="end">End</label>
                 <input
