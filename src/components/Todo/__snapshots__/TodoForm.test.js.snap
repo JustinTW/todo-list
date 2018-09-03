@@ -89,7 +89,12 @@ exports[`Layout renders children correctly 1`] = `
             <label
               htmlFor="summary"
             >
-              Event
+              Event 
+              <span
+                className="text-danger font-weight-bold"
+              >
+                *
+              </span>
             </label>
             <input
               autoComplete="off"
@@ -107,7 +112,12 @@ exports[`Layout renders children correctly 1`] = `
             <label
               htmlFor="start"
             >
-              Start
+              Start 
+              <span
+                className="text-danger font-weight-bold"
+              >
+                *
+              </span>
             </label>
             <input
               autoComplete="off"
@@ -124,7 +134,12 @@ exports[`Layout renders children correctly 1`] = `
             <label
               htmlFor="end"
             >
-              End
+              End 
+              <span
+                className="text-danger font-weight-bold"
+              >
+                *
+              </span>
             </label>
             <input
               autoComplete="off"

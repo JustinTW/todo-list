@@ -48,7 +48,9 @@ class TodoForm extends React.Component {
             <div className="form-row">
               <div className="form-group col-md-4">
                 {/* eslint-disable-next-line jsx-a11y/label-has-for */}
-                <label htmlFor="summary">Event</label>
+                <label htmlFor="summary">
+                  Event <span className="text-danger font-weight-bold">*</span>
+                </label>
                 <input
                   type="text"
                   id="summary"
@@ -62,7 +64,9 @@ class TodoForm extends React.Component {
               </div>
               <div className="form-group col-md-3">
                 {/* eslint-disable-next-line jsx-a11y/label-has-for */}
-                <label htmlFor="start">Start</label>
+                <label htmlFor="start">
+                  Start <span className="text-danger font-weight-bold">*</span>
+                </label>
                 <input
                   type="text"
                   id="start"
@@ -75,7 +79,9 @@ class TodoForm extends React.Component {
               </div>
               <div className="form-group col-md-3">
                 {/* eslint-disable-next-line jsx-a11y/label-has-for */}
-                <label htmlFor="end">End</label>
+                <label htmlFor="end">
+                  End <span className="text-danger font-weight-bold">*</span>
+                </label>
                 <input
                   type="text"
                   id="end"
