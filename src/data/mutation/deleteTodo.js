@@ -1,5 +1,4 @@
 import {
-  GraphQLList as ListType,
   GraphQLNonNull as NonNull,
   GraphQLString as StringType,
 } from 'graphql';
@@ -16,7 +15,8 @@ const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURICompone
 )}/events`;
 
 const deleteTodo = {
-  type: new ListType(EventItemType),
+  // type: new ListType(EventItemType),
+  type: EventItemType,
   args: {
     id: {
       type: new NonNull(StringType),
@@ -40,6 +40,7 @@ const deleteTodo = {
       };
 
       fetch(`${url}/${id}`, { headers, method: 'DELETE' })
+        .then(response => response.json())
         .then(response => {
           items = response;
           return items;

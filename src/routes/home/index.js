@@ -6,18 +6,18 @@ async function action({ fetch }) {
   // Load todo events from /graphql
   const resp = await fetch('/graphql', {
     body: JSON.stringify({
-      query: '{event {id, summary, htmlLink, start, end}}',
+      query: '{events {id, summary, htmlLink, start, end}}',
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.event) throw new Error('Failed to load the event feed.');
+  if (!data || !data.events) throw new Error('Failed to load the event feed.');
 
   return {
     title: 'TODO List Demo',
     chunks: ['home'],
     component: (
       <Layout>
-        <Home event={data.event} />
+        <Home event={data.events} />
       </Layout>
     ),
   };
