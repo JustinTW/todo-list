@@ -11,37 +11,48 @@ const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURICompone
 )}/events`;
 
 let items = [];
+let lastFetchTask;
+let lastFetchTime = new Date(1970, 0, 1);
 
 const events = {
   type: new ListType(EventItemType),
-  resolve() {
-    // Get OAuth token and fetch data
-    const gtoken = new GoogleToken({
-      email: googleApis.credential.client_email,
-      scope: ['https://www.googleapis.com/auth/calendar'], // or space-delimited string of scopes
-      key: googleApis.credential.private_key,
-    });
+  async resolve() {
+    if (lastFetchTask) {
+      return lastFetchTask;
+    }
 
-    gtoken.getToken((err, token) => {
-      if (err) {
-        throw err;
-      }
+    if (new Date() - lastFetchTime > 1000 * 10 /* cache 10 second */) {
+      lastFetchTime = new Date();
+      // Get OAuth token and fetch data
+      const gtoken = new GoogleToken({
+        email: googleApis.credential.client_email,
+        scope: ['https://www.googleapis.com/auth/calendar'], // or space-delimited string of scopes
+        key: googleApis.credential.private_key,
+      });
+
+      const token = await gtoken.getToken();
       const headers = {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       };
 
-      fetch(url, { headers })
+      lastFetchTask = fetch(url, { headers })
         .then(response => response.json())
         .then(response => {
           items = response.items;
+          lastFetchTask = null;
           return items;
         })
         .catch(fetchErr => {
+          lastFetchTask = null;
           throw fetchErr;
         });
-      return items;
-    });
+
+      if (items.length) {
+        return items;
+      }
+      return lastFetchTask;
+    }
     return items;
   },
 };

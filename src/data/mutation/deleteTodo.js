@@ -13,15 +13,23 @@ const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURICompone
   googleApis.calendarId,
 )}/events`;
 
+let lastFetchTask = {}; // eslint-disable-line
+
 const deleteTodo = {
-  // type: new ListType(EventItemType),
   type: EventItemType,
   args: {
     id: {
       type: new NonNull(StringType),
     },
   },
-  resolve: (_, { id }) => {
+  async resolve(_, { id }) {
+    if (
+      Object.prototype.hasOwnProperty.call(lastFetchTask, id) &&
+      lastFetchTask[id]
+    ) {
+      return lastFetchTask[id];
+    }
+
     // Get OAuth token and fetch data
     const gtoken = new GoogleToken({
       email: googleApis.credential.client_email,
@@ -29,26 +37,26 @@ const deleteTodo = {
       key: googleApis.credential.private_key,
     });
 
-    gtoken.getToken((err, token) => {
-      if (err) {
-        throw err;
-      }
-      const headers = {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      };
+    const token = await gtoken.getToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    };
 
-      fetch(`${url}/${id}`, { headers, method: 'DELETE' })
-        .then(response => {
-          if (response.status >= 299) {
-            console.info('google api status error');
-          }
-          return { id };
-        })
-        .catch(fetchErr => {
-          throw fetchErr;
-        });
-    });
+    lastFetchTask[id] = fetch(`${url}/${id}`, { headers, method: 'DELETE' })
+      .then(response => {
+        lastFetchTask[id] = null;
+        if (response.status >= 299) {
+          console.info('google api status error');
+        }
+        lastFetchTask[id] = null;
+        return { id };
+      })
+      .catch(fetchErr => {
+        lastFetchTask[id] = null;
+        throw fetchErr;
+      });
+    return lastFetchTask[id];
   },
 };
 
