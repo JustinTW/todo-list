@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/JustinTW/todo-list.svg?branch=master)](https://travis-ci.org/JustinTW/todo-list)
 
+![Alt text](/public/screenshot.png?raw=true 'Todo app screenshot')
+
 ## Requirement
 
 - NodeJS >= 8.11.2
