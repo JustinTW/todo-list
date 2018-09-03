@@ -45,23 +45,23 @@ class TodoItem extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col col-md-4" />
-            <div className="col col-md-3">
+            <div className="col col-md-3" title="start">
               <Icon icon={clock} />
               <span className="badge badge-light">{this.props.start}</span>
             </div>
-            <div className="col col-md-3">
+            <div className="col col-md-3" title="end">
               <Icon icon={clock} />
               <span className="badge badge-light">{this.props.end}</span>
             </div>
             <div className="col col-md-2" />
           </div>
           <div className="row">
-            <div className="col col-sm-4">
-              <h3 className="text-muted text-truncate">
+            <div className="col col-sm-4" title={this.props.summary}>
+              <h4 className="text-muted text-truncate">
                 <Icon icon={calendar} /> {this.props.summary}
-              </h3>
+              </h4>
             </div>
-            <div className="col">
+            <div className="col" title="description">
               <Icon icon={task} /> {this.props.description}
             </div>
             <div className="col col-sm-2 mt-1">
