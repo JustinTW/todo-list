@@ -117,7 +117,12 @@ class Todo extends React.Component {
       })
       .then(response => response.json())
       .then(response => {
-        if (!response.data) throw new Error(`Failed to add event: ${summary}`);
+        if (
+          !response.data ||
+          !response.data.createTodo ||
+          !response.data.createTodo.id
+        )
+          throw new Error(`Failed to add event: ${summary}`);
         const { id } = response.data.createTodo;
         let { data } = this.state;
         data = data.concat([{ id, summary, start, end }]);

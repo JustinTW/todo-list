@@ -57,9 +57,9 @@ class TodoItem extends React.Component {
           </div>
           <div className="row">
             <div className="col col-sm-4">
-              <h2 className="text-muted text-truncate">
+              <h3 className="text-muted text-truncate">
                 <Icon icon={calendar} /> {this.props.summary}
-              </h2>
+              </h3>
             </div>
             <div className="col">
               <Icon icon={task} /> {this.props.description}
