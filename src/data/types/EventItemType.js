@@ -8,7 +8,9 @@ import {
 const EventItemType = new ObjectType({
   name: 'EventItem',
   fields: {
-    id: { type: new NonNull(ID) },
+    id: {
+      type: new NonNull(ID),
+    },
     summary: { type: new NonNull(StringType) },
     htmlLink: { type: new NonNull(StringType) },
     start: {
@@ -24,8 +26,6 @@ const EventItemType = new ObjectType({
       },
     },
     description: { type: StringType },
-    created: { type: new NonNull(StringType) },
-    updated: { type: new NonNull(StringType) },
   },
 });
 

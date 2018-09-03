@@ -23,6 +23,13 @@ yarn start
 
 Now you can open your web app in a browser via: http://localhost:3000
 
+## Stack
+
+- Express 4.16.3
+- GraphQL
+- ReactJS 16.4.1
+- Bootstrap 4.1.3
+
 ## Reference
 
 - react start kit: https://github.com/kriasoft/react-starter-kit

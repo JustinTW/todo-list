@@ -11,14 +11,16 @@ class TodoForm extends React.Component {
     this.summaryRef = React.createRef();
     this.startRef = React.createRef();
     this.endRef = React.createRef();
+    this.descriptionRef = React.createRef();
   }
 
   componentDidMount() {
     const start = this.startRef.current.value.trim();
+    const end = this.endRef.current.value.trim();
+
     if (!start) {
       this.startRef.current.value = '2018-09-05T16:00:00+08:00';
     }
-    const end = this.endRef.current.value.trim();
     if (!end) {
       this.endRef.current.value = '2018-09-05T16:30:00+08:00';
     }
@@ -26,13 +28,16 @@ class TodoForm extends React.Component {
 
   doSubmit = e => {
     e.preventDefault();
-    console.info(this.summaryRef.current.value);
     const summary = this.summaryRef.current.value.trim();
-    if (!summary) {
+    const start = this.startRef.current.value.trim();
+    const end = this.endRef.current.value.trim();
+    const description = this.descriptionRef.current.value.trim();
+    if (!summary || !start || !end) {
       return;
     }
-    this.props.onSummarySubmit(summary);
+    this.props.onSummarySubmit(summary, start, end, description);
     this.summaryRef.current.value = '';
+    this.descriptionRef.current.value = '';
   };
 
   render() {
@@ -50,7 +55,7 @@ class TodoForm extends React.Component {
                   ref={this.summaryRef}
                   className="form-control"
                   placeholder="What do you need to do?"
-                  maxLength="95"
+                  maxLength="90"
                   autoComplete="off"
                   required
                 />
@@ -88,6 +93,21 @@ class TodoForm extends React.Component {
                   type="submit"
                   value="Add Event"
                   className="btn btn-primary float-right"
+                />
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-group col-md-10">
+                {/* eslint-disable-next-line jsx-a11y/label-has-for */}
+                <label htmlFor="description">Description</label>
+                <input
+                  type="text"
+                  id="description"
+                  ref={this.descriptionRef}
+                  className="form-control"
+                  placeholder="What is this event detail?"
+                  maxLength="180"
+                  autoComplete="off"
                 />
               </div>
             </div>

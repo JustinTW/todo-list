@@ -1,4 +1,4 @@
-import { GraphQLString as StringType } from 'graphql';
+import { GraphQLList as ListType } from 'graphql';
 import fetch from 'node-fetch';
 import EventItemType from '../types/EventItemType';
 import { googleApis } from '../../config';
@@ -10,28 +10,18 @@ const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURICompone
   googleApis.calendarId,
 )}/events`;
 
-let item = {}; // eslint-disable-line
-let lastFetchTask = {}; // eslint-disable-line
+let items = [];
+let lastFetchTask;
 let lastFetchTime = new Date(1970, 0, 1);
 
-const event = {
-  type: EventItemType,
-  args: {
-    id: {
-      type: StringType,
-    },
-  },
-  async resolve(_, { id }) {
-    if (
-      Object.prototype.hasOwnProperty.call(lastFetchTask, id) &&
-      lastFetchTask[id]
-    ) {
-      return lastFetchTask[id];
+const events = {
+  type: new ListType(EventItemType),
+  async resolve() {
+    if (lastFetchTask) {
+      return lastFetchTask;
     }
-    if (
-      new Date() - lastFetchTime > 1000 * 5 /* 5sec */ ||
-      !Object.prototype.hasOwnProperty.call(item, id)
-    ) {
+
+    if (new Date() - lastFetchTime > 1000 * 10 /* cache 10 second */) {
       lastFetchTime = new Date();
       // Get OAuth token and fetch data
       const gtoken = new GoogleToken({
@@ -39,29 +29,32 @@ const event = {
         scope: ['https://www.googleapis.com/auth/calendar'], // or space-delimited string of scopes
         key: googleApis.credential.private_key,
       });
+
       const token = await gtoken.getToken();
       const headers = {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       };
-      lastFetchTask[id] = fetch(`${url}/${id}`, { headers, method: 'GET' })
+
+      lastFetchTask = fetch(url, { headers })
         .then(response => response.json())
         .then(response => {
-          item[id] = response;
-          lastFetchTask[id] = null;
-          return item[id];
+          items = response.items;
+          lastFetchTask = null;
+          return items;
         })
         .catch(fetchErr => {
-          lastFetchTask[id] = null;
+          lastFetchTask = null;
           throw fetchErr;
         });
-      if (item[id]) {
-        return item[id];
+
+      if (items.length) {
+        return items;
       }
-      return lastFetchTask[id];
+      return lastFetchTask;
     }
-    return item[id];
+    return items;
   },
 };
 
-export default event;
+export default events;

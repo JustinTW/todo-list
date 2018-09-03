@@ -1,5 +1,4 @@
 import {
-  GraphQLList as ListType,
   GraphQLNonNull as NonNull,
   GraphQLString as StringType,
 } from 'graphql';
@@ -9,20 +8,37 @@ import { googleApis } from '../../config';
 
 const { GoogleToken } = require('gtoken');
 
-let items = {};
 // Google calendar api
 const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(
   googleApis.calendarId,
 )}/events`;
 
+let item;
+let lastFetchTask; // eslint-disable-line
+
 const createTodo = {
-  type: new ListType(EventItemType),
+  type: EventItemType,
   args: {
+    id: {
+      type: StringType,
+    },
     summary: {
       type: new NonNull(StringType),
     },
+    start: {
+      type: new NonNull(StringType),
+    },
+    end: {
+      type: new NonNull(StringType),
+    },
+    description: {
+      type: StringType,
+    },
   },
-  resolve: (_, { summary }) => {
+  async resolve(_, { summary, start, end, description }) {
+    if (lastFetchTask) {
+      return lastFetchTask;
+    }
     // Get OAuth token and fetch data
     const gtoken = new GoogleToken({
       email: googleApis.credential.client_email,
@@ -30,26 +46,33 @@ const createTodo = {
       key: googleApis.credential.private_key,
     });
 
-    gtoken.getToken((err, token) => {
-      if (err) {
-        throw err;
-      }
-      const headers = {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      };
-
-      fetch(`${url}/${summary}`, { headers })
-        .then(response => response.json())
-        .then(response => {
-          items = response;
-          return items;
-        })
-        .catch(fetchErr => {
-          throw fetchErr;
-        });
-      return items;
-    });
+    const token = await gtoken.getToken();
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    };
+    const method = 'POST';
+    const body = {
+      summary,
+      start: { dateTime: start },
+      end: { dateTime: end },
+      description,
+    };
+    lastFetchTask = fetch(`${url}`, {
+      headers,
+      method,
+      body: JSON.stringify(body),
+    })
+      .then(response => {
+        item = response.json();
+        lastFetchTask = null;
+        return item;
+      })
+      .catch(fetchErr => {
+        lastFetchTask = null;
+        throw fetchErr;
+      });
+    return lastFetchTask;
   },
 };
 
