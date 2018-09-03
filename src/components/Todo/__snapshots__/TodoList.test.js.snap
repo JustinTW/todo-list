@@ -1,0 +1,325 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout renders children correctly 1`] = `
+<div>
+  <a
+    aria-label="Open GitHub project"
+    className="github-corner"
+    height={80}
+    href="https://github.com/justintw/todo-list"
+    width={80}
+  >
+    <svg
+      height={80}
+      style={
+        Object {
+          "fill": "#fff",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      viewBox="0 0 250 250"
+      width={80}
+    >
+      <path
+        className="octo-banner"
+        d="M0 0l115 115h15l12 27 108 108V0z"
+        fill="#7253aa"
+      />
+      <path
+        className="octo-arm"
+        d="M128 109c-15-9-9-19-9-19 3-7 2-11 2-11-1-7 3-2 3-2 4 5 2 11 2 11-3 10 5 15 9 16"
+        style={
+          Object {
+            "WebkitTransformOrigin": "130px 106px",
+            "transformOrigin": "130px 106px",
+          }
+        }
+      />
+      <path
+        className="octo-body"
+        d="M115 115s4 2 5 0l14-14c3-2 6-3 8-3-8-11-15-24 2-41 5-5 10-7 16-7 1-2 3-7 12-11 0 0 5 3 7 16 4 2 8 5 12 9s7 8 9 12c14 3 17 7 17 7-4 8-9 11-11 11 0 6-2 11-7 16-16 16-30 10-41 2 0 3-1 7-5 11l-12 11c-1 1 1 5 1 5z"
+      />
+    </svg>
+  </a>
+  <div
+    className="root"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="banner"
+      >
+        <h1
+          className="bannerTitle"
+        >
+          To Do Events
+        </h1>
+        <div>
+          All data backed by  
+          <a
+            className="link"
+            href="https://calendar.google.com/calendar/embed?src=on5u94ds1i0opo6ikcud037kig%40group.calendar.google.com&ctz=Asia%2FTaipei"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            this public google calendar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul
+    className="list-group"
+  >
+    <li
+      className="list-group-item list-group-item-action justify-content-between align-items-center"
+    >
+      <div
+        className="container"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="col col-md-4"
+          />
+          <div
+            className="col col-md-3"
+            title="start"
+          >
+            <div
+              fill="currentColor"
+              size={16}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "inline-flex",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <svg
+                fill="currentColor"
+                height={16}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "middle",
+                  }
+                }
+                viewBox="0 0 8 8"
+                width={16}
+              >
+                <path
+                  d="M4 0c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 1c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm-.5 1v2.22l.16.13.5.5.34.38.72-.72-.38-.34-.34-.34v-1.81h-1z"
+                />
+              </svg>
+            </div>
+            <span
+              className="badge badge-light"
+            >
+              start
+            </span>
+          </div>
+          <div
+            className="col col-md-3"
+            title="end"
+          >
+            <div
+              fill="currentColor"
+              size={16}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "inline-flex",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <svg
+                fill="currentColor"
+                height={16}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "middle",
+                  }
+                }
+                viewBox="0 0 8 8"
+                width={16}
+              >
+                <path
+                  d="M4 0c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 1c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm-.5 1v2.22l.16.13.5.5.34.38.72-.72-.38-.34-.34-.34v-1.81h-1z"
+                />
+              </svg>
+            </div>
+            <span
+              className="badge badge-light"
+            >
+              end
+            </span>
+          </div>
+          <div
+            className="col col-md-2"
+          />
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="col col-sm-4"
+            title="summary"
+          >
+            <h4
+              className="text-muted text-truncate"
+            >
+              <div
+                fill="currentColor"
+                size={16}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "inline-flex",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <svg
+                  fill="currentColor"
+                  height={16}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  viewBox="0 0 8 8"
+                  width={16}
+                >
+                  <path
+                    d="M0 0v2h7v-2h-7zm0 3v4.91c0 .05.04.09.09.09h6.81c.05 0 .09-.04.09-.09v-4.91h-7zm1 1h1v1h-1v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1zm-4 2h1v1h-1v-1zm2 0h1v1h-1v-1z"
+                  />
+                </svg>
+              </div>
+               
+              summary
+            </h4>
+          </div>
+          <div
+            className="col"
+            title="description"
+          >
+            <div
+              fill="currentColor"
+              size={16}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "inline-flex",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <svg
+                fill="currentColor"
+                height={16}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "verticalAlign": "middle",
+                  }
+                }
+                viewBox="0 0 8 8"
+                width={16}
+              >
+                <path
+                  d="M0 0v7h7v-3.59l-1 1v1.59h-5v-5h3.59l1-1h-5.59zm7 0l-3 3-1-1-1 1 2 2 4-4-1-1z"
+                />
+              </svg>
+            </div>
+             
+            description
+          </div>
+          <div
+            className="col col-sm-2 mt-1"
+          >
+            <button
+              className="btn btn-xs btn-danger img-circle float-right"
+              onClick={[Function]}
+              title="Remove"
+              type="button"
+            >
+              <div
+                fill="currentColor"
+                size={16}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "inline-flex",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <svg
+                  fill="currentColor"
+                  height={16}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  viewBox="0 0 8 8"
+                  width={16}
+                >
+                  <path
+                    d="M3 0c-.55 0-1 .45-1 1h-1c-.55 0-1 .45-1 1h7c0-.55-.45-1-1-1h-1c0-.55-.45-1-1-1h-1zm-2 3v4.81c0 .11.08.19.19.19h4.63c.11 0 .19-.08.19-.19v-4.81h-1v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-3.5h-1v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-3.5h-1z"
+                  />
+                </svg>
+              </div>
+            </button>
+            <button
+              className="btn btn-xs btn-primary img-circle float-right"
+              onClick={[Function]}
+              title="Fetch Detail"
+              type="button"
+            >
+              <div
+                fill="currentColor"
+                size={16}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "inline-flex",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <svg
+                  fill="currentColor"
+                  height={16}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  viewBox="0 0 8 8"
+                  width={16}
+                >
+                  <path
+                    d="M6 0v1h-5c-.55 0-1 .45-1 1v1h1v-1h5v1l2-1.5-2-1.5zm-4 4l-2 1.5 2 1.5v-1h5c.55 0 1-.45 1-1v-1h-1v1h-5v-1z"
+                  />
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+`;

@@ -23,7 +23,8 @@ yarn
 yarn start
 ```
 
-Now you can open your web app in a browser via: http://localhost:3000
+After service start, you can open your web app in a browser via: http://localhost:3000
+If you need GraphiQL UI for test purpose, please go to: http://localhost:3000/graphql
 
 ## Stack
 
@@ -31,6 +32,7 @@ Now you can open your web app in a browser via: http://localhost:3000
 - GraphQL
 - ReactJS 16.4.1
 - Bootstrap 4.1.3
+- Jest 23.1.0
 
 ## Reference
 
