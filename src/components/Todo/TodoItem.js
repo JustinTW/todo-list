@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Icon from 'react-icons-kit';
 import { calendar } from 'react-icons-kit/iconic/calendar';
 import { clock } from 'react-icons-kit/iconic/clock';
-import { info } from 'react-icons-kit/iconic/info';
+import { loop } from 'react-icons-kit/iconic/loop';
+import { task } from 'react-icons-kit/iconic/task';
 import { trash } from 'react-icons-kit/iconic/trash';
 
 class TodoItem extends React.Component {
@@ -14,12 +15,14 @@ class TodoItem extends React.Component {
     start: PropTypes.string,
     end: PropTypes.string,
     nodeId: PropTypes.string,
+    description: PropTypes.string,
   };
 
   static defaultProps = {
     nodeId: '',
     start: '',
     end: '',
+    description: '',
   };
 
   removeNode = e => {
@@ -53,15 +56,19 @@ class TodoItem extends React.Component {
             <div className="col col-md-2" />
           </div>
           <div className="row">
-            <div className="col">
-              <h2>
+            <div className="col col-sm-4">
+              <h2 className="text-muted text-truncate">
                 <Icon icon={calendar} /> {this.props.summary}
               </h2>
             </div>
-            <div className="col col-sm-2">
+            <div className="col">
+              <Icon icon={task} /> {this.props.description}
+            </div>
+            <div className="col col-sm-2 mt-1">
               <button
                 type="button"
                 className="btn btn-xs btn-danger img-circle float-right"
+                title="Remove"
                 onClick={this.removeNode}
               >
                 <Icon icon={trash} />
@@ -69,9 +76,10 @@ class TodoItem extends React.Component {
               <button
                 type="button"
                 className="btn btn-xs btn-primary img-circle float-right"
+                title="Fetch Detail"
                 onClick={this.fetchDetail}
               >
-                <Icon icon={info} />
+                <Icon icon={loop} />
               </button>
             </div>
           </div>

@@ -1,5 +1,4 @@
 import {
-  GraphQLList as ListType,
   GraphQLNonNull as NonNull,
   GraphQLString as StringType,
 } from 'graphql';
@@ -9,20 +8,32 @@ import { googleApis } from '../../config';
 
 const { GoogleToken } = require('gtoken');
 
-let items = {};
+let item = {};
 // Google calendar api
 const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(
   googleApis.calendarId,
 )}/events`;
 
 const createTodo = {
-  type: new ListType(EventItemType),
+  type: EventItemType,
   args: {
+    id: {
+      type: StringType,
+    },
     summary: {
       type: new NonNull(StringType),
     },
+    start: {
+      type: new NonNull(StringType),
+    },
+    end: {
+      type: new NonNull(StringType),
+    },
+    description: {
+      type: StringType,
+    },
   },
-  resolve: (_, { summary }) => {
+  resolve: (_, { summary, start, end, description }) => {
     // Get OAuth token and fetch data
     const gtoken = new GoogleToken({
       email: googleApis.credential.client_email,
@@ -38,18 +49,24 @@ const createTodo = {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       };
-
-      fetch(`${url}/${summary}`, { headers })
-        .then(response => response.json())
+      const method = 'POST';
+      const body = {
+        summary,
+        start: { dateTime: start },
+        end: { dateTime: end },
+        description,
+      };
+      fetch(`${url}`, { headers, method, body: JSON.stringify(body) })
         .then(response => {
-          items = response;
-          return items;
+          item = response.json();
+          return item;
         })
         .catch(fetchErr => {
           throw fetchErr;
         });
-      return items;
+      // return item;
     });
+    return item;
   },
 };
 

@@ -19,7 +19,6 @@ class Home extends React.Component {
   static contextTypes = { fetch: PropTypes.func.isRequired };
 
   render() {
-    console.info();
     return (
       <div className={s.root}>
         <div className={s.container}>

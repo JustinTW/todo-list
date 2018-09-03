@@ -26,8 +26,6 @@ const EventItemType = new ObjectType({
       },
     },
     description: { type: StringType },
-    created: { type: new NonNull(StringType) },
-    updated: { type: new NonNull(StringType) },
   },
 });
 

@@ -10,9 +10,7 @@ const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURICompone
   googleApis.calendarId,
 )}/events`;
 
-let items = [];
-let lastFetchTask = {}; // eslint-disable-line prefer-const
-let lastFetchTime = new Date(1970, 0, 1);
+let item = [];
 
 const event = {
   type: EventItemType,
@@ -22,52 +20,41 @@ const event = {
     },
   },
   resolve(_, { id }) {
-    if (
-      Object.prototype.hasOwnProperty.call(lastFetchTask, id) &&
-      lastFetchTask[id]
-    ) {
-      return lastFetchTask[id];
-    }
-    if (new Date() - lastFetchTime > 1000 * 5 /* 5 sec */) {
-      lastFetchTime = new Date();
-      // Get OAuth token and fetch data
-      const gtoken = new GoogleToken({
-        email: googleApis.credential.client_email,
-        scope: ['https://www.googleapis.com/auth/calendar'], // or space-delimited string of scopes
-        key: googleApis.credential.private_key,
-      });
+    // Get OAuth token and fetch data
+    const gtoken = new GoogleToken({
+      email: googleApis.credential.client_email,
+      scope: ['https://www.googleapis.com/auth/calendar'], // or space-delimited string of scopes
+      key: googleApis.credential.private_key,
+    });
 
-      gtoken.getToken((err, token) => {
-        if (err) {
-          throw err;
-        }
-        const headers = {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        };
+    gtoken.getToken((err, token) => {
+      if (err) {
+        throw err;
+      }
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      };
 
-        lastFetchTask[id] = fetch(`${url}/${id}`, {
-          headers,
-          method: 'GET',
+      fetch(`${url}/${id}`, {
+        headers,
+        method: 'GET',
+      })
+        .then(response => response.json())
+        .then(response => {
+          item = response;
+          return item;
         })
-          .then(response => response.json())
-          .then(response => {
-            items = response;
-            lastFetchTask[id] = items;
-            return items;
-          })
-          .catch(fetchErr => {
-            lastFetchTask[id] = null;
-            throw fetchErr;
-          });
-        if (items.length) {
-          return items;
-        }
+        .catch(fetchErr => {
+          throw fetchErr;
+        });
+      // if (item.length) {
+      //   return item;
+      // }
 
-        return lastFetchTask[id];
-      });
-    }
-    return items;
+      return item;
+    });
+    return item;
   },
 };
 

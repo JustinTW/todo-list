@@ -12,7 +12,7 @@ class TodoList extends React.Component {
         htmlLink: PropTypes.string,
         start: PropTypes.string,
         end: PropTypes.string,
-        description: PropTypes.string.string,
+        description: PropTypes.string,
       }),
     ).isRequired,
   };
@@ -29,6 +29,7 @@ class TodoList extends React.Component {
           summary={listItem.summary}
           start={listItem.start}
           end={listItem.end}
+          description={listItem.description}
           removeNode={this.removeNode}
           fetchDetail={this.fetchDetail}
         />

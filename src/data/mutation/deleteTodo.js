@@ -8,7 +8,6 @@ import { googleApis } from '../../config';
 
 const { GoogleToken } = require('gtoken');
 
-let items = {};
 // Google calendar api
 const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(
   googleApis.calendarId,
@@ -40,15 +39,15 @@ const deleteTodo = {
       };
 
       fetch(`${url}/${id}`, { headers, method: 'DELETE' })
-        .then(response => response.json())
         .then(response => {
-          items = response;
-          return items;
+          if (response.status >= 299) {
+            console.info('google api status error');
+          }
+          return { id };
         })
         .catch(fetchErr => {
           throw fetchErr;
         });
-      return items;
     });
   },
 };

@@ -24,15 +24,15 @@ class Todo extends React.Component {
 
   constructor(props) {
     super(props);
-    // Server side rendering (fast)
+    // Server side rendering (faster)
     const data = this.props.event;
     this.state = { data };
 
-    // Client side rendering (slow)
+    // Client side rendering (slower), keep this for demo later
     // this.state = { data: [] };
   }
 
-  // Client side rendering (slow)
+  // Client side rendering (slower), keep this for demo later
   //
   // componentDidMount() {
   //   // Load events from /graphql
@@ -55,8 +55,6 @@ class Todo extends React.Component {
   //     });
   // }
 
-  generateId = () => Math.floor(Math.random() * 90000) + 10000;
-
   handleNodeRemoval = nodeId => {
     this.context
       .fetch('/graphql', {
@@ -66,6 +64,7 @@ class Todo extends React.Component {
       })
       .then(response => response.json())
       .then(response => {
+        // console.info(response);
         if (!response.data)
           throw new Error(`Failed to remove event: ${nodeId}`);
 
@@ -91,8 +90,17 @@ class Todo extends React.Component {
           throw new Error(`Failed to fetch event detail: ${nodeId}`);
 
         const { data } = this.state;
-        // data = data.filter(el => el.id !== nodeId);
-        console.info(response);
+        data.forEach(item => {
+          if (item.id === nodeId) {
+            if (response.data.event.description) {
+              // eslint-disable-next-line no-param-reassign
+              item.description = response.data.event.description;
+            } else {
+              // eslint-disable-next-line no-param-reassign
+              item.description = 'description is empty';
+            }
+          }
+        });
         this.setState({ data });
       })
       .catch(fetchErr => {
@@ -100,11 +108,24 @@ class Todo extends React.Component {
       });
   };
 
-  handleSubmit = (summary, start, end) => {
-    let { data } = this.state;
-    const id = this.generateId().toString();
-    data = data.concat([{ id, summary, start, end }]);
-    this.setState({ data });
+  handleSubmit = (summary, start, end, description) => {
+    this.context
+      .fetch('/graphql', {
+        body: JSON.stringify({
+          query: `mutation{createTodo(summary: "${summary}", start: "${start}",end: "${end}", description: "${description}",){id}}`,
+        }),
+      })
+      .then(response => response.json())
+      .then(response => {
+        if (!response.data) throw new Error(`Failed to add event: ${summary}`);
+        const { id } = response.data.createTodo;
+        let { data } = this.state;
+        data = data.concat([{ id, summary, start, end }]);
+        this.setState({ data });
+      })
+      .catch(fetchErr => {
+        throw fetchErr;
+      });
   };
 
   render() {
